@@ -1,17 +1,37 @@
-import { ADD_MOVIES } from "../actions";
+import { ADD_MOVIES, ADD_FAVOURITE ,REMOVE_FAVOURITE,SET_SHOW_FAVOURTIES } from "../actions";
 
 const initialMovieState = {
-    list :[] ,
-    favourites : [] ,
-}
+  list: [],
+  favourites: [],
+  showFavourites : false
+};
 
-
-export default function movies (state = initialMovieState ,action) {
-    if (action.type === ADD_MOVIES ) {
+export default function movies(state = initialMovieState, action) {
+  switch (action.type) {
+    case ADD_MOVIES:
+      return {
+        ...state,
+        list: action.movies,
+      };
+    case ADD_FAVOURITE :
         return {
             ...state,
-            list : action.movies
+            favourites :[action.movie , ...state.favourites]
         }
-    }
-    return state;
+    case REMOVE_FAVOURITE :
+        const new_array = state.favourites.filter(
+            movie => movie.Title !== action.movie.Title
+        )
+        return{
+            ...state,
+            favourites : new_array
+        }
+    case SET_SHOW_FAVOURTIES :
+        return{
+            ...state,
+            showFavourites : action.val
+        }
+    default:
+      return state;
+  }
 }
