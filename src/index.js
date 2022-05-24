@@ -9,15 +9,6 @@ import movies from './reducers';
 // creating a store with redux
 const store = createStore(movies);
 
-console.log('store',store)
-
-// store.dispatch({
-//   type :'ADD_MOVIES',
-//   movies : [{name : 'HER'}]
-// })
-
-// console.log('Store State - AFTER',store.getState())
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

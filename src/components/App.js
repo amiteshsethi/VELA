@@ -2,6 +2,7 @@ import { data } from "../data";
 import { Component } from "react";
 import MovieCard from "./MovieCard";
 import Navbar from "./Navbar";
+import { addMovies } from "../actions";
 
 class App extends Component {
   // suppose u have to fetch the data froma an API unlike here ,so we need to ComponentDidMount
@@ -13,21 +14,17 @@ class App extends Component {
     const { store } = this.props;
     // subscribing the store
     store.subscribe(() => {
-      console.log("Updated");
+      // console.log("Updated");
       this.forceUpdate();
-      
     });
-    store.dispatch({
-      type: "ADD_MOVIES",
-      movies: data,
-    });
+    store.dispatch(addMovies(data));
 
-    console.log("STATE", this.props.store.getState());
+    // console.log("STATE", this.props.store.getState());
 
-    // flow - line -20 -15-25 
+    // flow of code execution - line -20 -15-25 
   }
   render() {
-    const movies = this.props.store.getState();
+    const {list} = this.props.store.getState();
     return (
       <div className="App">
         <Navbar />
@@ -38,7 +35,7 @@ class App extends Component {
           </div>
 
           <div className="list">
-            {movies.map((movie, index) => (
+            {list.map((movie, index) => (
               <MovieCard movie={movie} key={`movies-${index}`} />
             ))}
           </div>
