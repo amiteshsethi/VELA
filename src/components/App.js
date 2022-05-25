@@ -25,8 +25,8 @@ class App extends Component {
   }
 
   isMovieFavourite = (movie) => {
-    const { favourites } = this.props.store.getState();
-    const index = favourites.indexOf(movie);
+    const { movies } = this.props.store.getState();
+    const index = movies.favourites.indexOf(movie);
 
     if (index !== -1) {
       // found thr movie
@@ -37,21 +37,33 @@ class App extends Component {
 
   onChangeTab = (val) => {
     this.props.store.dispatch(setShowFavourites(val));
-
-  }
+  };
 
   render() {
-    const { list , favourites , showFavourites } = this.props.store.getState();
-    console.log("STATE", this.props.store.getState());
+    const {movies} = this.props.store.getState(); // {movies , search}
+    const { list, favourites, showFavourites } = movies;
+    // console.log("STATE", this.props.store.getState());
 
-      const displayMovies = showFavourites ? favourites : list
+    const displayMovies = showFavourites ? favourites : list;
+
+
     return (
       <div className="App">
         <Navbar />
         <div className="main">
           <div className="tabs">
-            <div className={`tab ${showFavourites ? '' : 'active-tabs'}`} onClick={() => this.onChangeTab(false)}>Movies </div>
-            <div className={`tab ${showFavourites ? 'active-tabs' : ''}`} onClick={() => this.onChangeTab(true)}>favourites</div>
+            <div
+              className={`tab ${showFavourites ? "" : "active-tabs"}`}
+              onClick={() => this.onChangeTab(false)}
+            >
+              Movies
+            </div>
+            <div
+              className={`tab ${showFavourites ? "active-tabs" : ""}`}
+              onClick={() => this.onChangeTab(true)}
+            >
+              favourites
+            </div>
           </div>
 
           <div className="list">
@@ -60,11 +72,13 @@ class App extends Component {
                 movie={movie}
                 key={`movies-${index}`}
                 dispatch={this.props.store.dispatch}
-                isFavourite = {this.isMovieFavourite(movie)}
+                isFavourite={this.isMovieFavourite(movie)}
               />
             ))}
           </div>
-          {displayMovies.length === 0 ? <div className="no-movies">No Movies to display </div>: null}
+          {displayMovies.length === 0 ? (
+            <div className="no-movies">No Movies to display </div>
+          ) : null}
         </div>
       </div>
     );
