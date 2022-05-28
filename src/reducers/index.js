@@ -1,9 +1,17 @@
-import { ADD_MOVIES, ADD_FAVOURITE ,REMOVE_FAVOURITE,SET_SHOW_FAVOURTIES } from "../actions";
+import {
+  ADD_MOVIES,
+  ADD_FAVOURITE,
+  REMOVE_FAVOURITE,
+  SET_SHOW_FAVOURTIES,
+  ADD_MOVIE_TO_LIST,
+  ADD_SEARCH_RESULT,
+} from "../actions";
+
 import { combineReducers } from "redux";
 const initialMovieState = {
   list: [],
   favourites: [],
-  showFavourites : false
+  showFavourites: false,
 };
 
 export function movies(state = initialMovieState, action) {
@@ -13,36 +21,55 @@ export function movies(state = initialMovieState, action) {
         ...state,
         list: action.movies,
       };
-    case ADD_FAVOURITE :
-        return {
-            ...state,
-            favourites :[action.movie , ...state.favourites]
-        }
-    case REMOVE_FAVOURITE :
-        const new_array = state.favourites.filter(
-            movie => movie.Title !== action.movie.Title
-        )
-        return{
-            ...state,
-            favourites : new_array
-        }
-    case SET_SHOW_FAVOURTIES :
-        return{
-            ...state,
-            showFavourites : action.val
-        }
+    case ADD_FAVOURITE:
+      return {
+        ...state,
+        favourites: [action.movie, ...state.favourites],
+      };
+    case REMOVE_FAVOURITE:
+      const new_array = state.favourites.filter(
+        (movie) => movie.Title !== action.movie.Title
+      );
+      return {
+        ...state,
+        favourites: new_array,
+      };
+    case SET_SHOW_FAVOURTIES:
+      return {
+        ...state,
+        showFavourites: action.val,
+      };
+
+    case ADD_MOVIE_TO_LIST:
+      return {
+        ...state,
+        list: [action.movies, ...state.list],
+      };
+
     default:
       return state;
   }
 }
 
 const initialSearchState = {
-  result :{} 
+  result: [], // last 5 mins of modd-03 last video 
+  showSearchResults: false,
+};
+
+export function search(state = initialSearchState, action) {
+  switch (action.type) {
+    case ADD_SEARCH_RESULT :
+      return {
+        ...state , 
+        result : action.movie,
+      showSearchResults: true,
+      }
+    default:
+      return state;
+  }
 }
 
-export function search (state = initialSearchState , action) {
-  return state
-}
+// this is our custom made comnbine-reducers
 
 // const initialRootState = {
 //   movies : initialMovieState ,
@@ -58,6 +85,6 @@ export function search (state = initialSearchState , action) {
 // // }
 
 export default combineReducers({
-  movies : movies,
-  search : search
-})
+  movies: movies,
+  search: search,
+});
