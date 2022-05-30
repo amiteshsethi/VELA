@@ -43,27 +43,31 @@ export function movies(state = initialMovieState, action) {
     case ADD_MOVIE_TO_LIST:
       return {
         ...state,
-        list: [action.movies, ...state.list],
+        list: [action.movie, ...state.list],
       };
-
     default:
       return state;
   }
 }
 
 const initialSearchState = {
-  result: [], // last 5 mins of modd-03 last video 
+  result: {}, // last 5 mins of modd-03 last video
   showSearchResults: false,
 };
 
 export function search(state = initialSearchState, action) {
   switch (action.type) {
-    case ADD_SEARCH_RESULT :
+    case ADD_SEARCH_RESULT:
       return {
-        ...state , 
-        result : action.movie,
-      showSearchResults: true,
-      }
+        ...state,
+        result: action.movie,
+        showSearchResults: true,
+      };
+    case ADD_MOVIE_TO_LIST:
+      return {
+        ...state,
+        showSearchResults :false,
+      };
     default:
       return state;
   }
