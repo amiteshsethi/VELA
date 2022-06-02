@@ -1,5 +1,6 @@
 _________________________________VELA ___________________________________________________
-                (name inspired from the the star constillation vla )
+
+                (name inspired from the the star constillation vela itself)
 
 Vela is a Movies App created using the very Powerfull JavaScript library REACT and along with REDUX , REACT-REDUX and deployed usig NETLIFY - [https://velabyamitesh.netlify.app/]
 
