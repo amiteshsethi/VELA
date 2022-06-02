@@ -9,7 +9,7 @@ Vela is where you can view Movies , their descirption , rating & etc .
 
 AS well as you can favourite your Movies and have a separate FAVOURITE LIST instead of all the MOVIES List 
 
-IF you like to add an MOVIE , you are also provided with that functality use the SEARCH bar above to click SEARCH any movie you want and add it to the MOVIES LIST or even FAVOURITES LIST .
+IF you like to add an MOVIE , you are also provided with that functality just use the SEARCH bar above and click SEARCH any movie you want and add it to the MOVIES LIST or even FAVOURITES LIST .
 
 SEARCH API USED - OMDB API - https://www.omdbapi.com/
 
