@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { addMovieToList, handleMovieSearch } from "../actions";
 
 class Navbar extends Component {
@@ -28,7 +29,7 @@ class Navbar extends Component {
   };
 
   render() {
-    const { result ,showSearchResults } = this.props.search;
+    const { result, showSearchResults } = this.props.search;
     return (
       <div className="nav">
         <div className="search-container">
@@ -36,6 +37,9 @@ class Navbar extends Component {
           <button id="search-btn" onClick={this.handleSearch}>
             Search
           </button>
+          <a href="https://amiteshsethi.github.io/Resume">
+            <button id="search-btn-2">Developer</button>
+          </a>
 
           {showSearchResults && (
             <div className="search-results">
@@ -57,4 +61,19 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+// class NavbarWrapper extends Component {
+//   render(){
+//     return (
+//       <StoreContext.Consumer>
+//         {(store) => <Navbar dispatch={store.dispatch} search={this.props.search} /> }
+//       </StoreContext.Consumer>
+//     )}
+// }
+
+function mapStateToProps({ search }) {
+  return {
+    search,
+  };
+}
+
+export default connect(mapStateToProps)(Navbar);

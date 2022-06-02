@@ -1,8 +1,3 @@
-// {
-//     type : 'ADD_MOVIES',
-//      movvies : [m1,m2,m3]
-// }
-
 
 // action types 
 export const ADD_MOVIES = 'ADD_MOVIES'
@@ -56,7 +51,7 @@ export function handleMovieSearch (movie) {
         fetch(url)
         .then(response => response.json())
         .then(movie => {
-            console.log('movie',movie)
+            // console.log('movie',movie)
 
             // dispatch an action
             dispatch(addMOvieSearchResult(movie))
